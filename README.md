@@ -37,7 +37,7 @@ _A simple starter dashboard for building paid APIs with authentication, balance 
 
 ## ⚙️ Configuration
 
-See [CONFIGURATION.md](CONFIG.md) for detailed setup instructions.
+See [CONFIG.md](CONFIG.md) for detailed setup instructions.
 
 ---
 

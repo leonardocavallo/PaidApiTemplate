@@ -1,0 +1,10 @@
+flask
+gunicorn
+loguru
+python-dotenv
+flask_jwt_extended
+pymongo
+pathlib
+bcrypt
+requests
+flask_mail

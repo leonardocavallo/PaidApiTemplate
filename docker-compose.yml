@@ -1,0 +1,9 @@
+services:
+  backend:
+    build: .
+    container_name: paidapi_backend
+    restart: always
+    env_file:
+      - .env
+    ports:
+      - "5000:5000"
