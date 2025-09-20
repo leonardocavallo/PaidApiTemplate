@@ -90,7 +90,7 @@ def payment_webhook():
         return jsonify({'error': 'Missing signature'}), 400
     
     computed_sig = hmac.new(COINBASE_WEBHOOK_SECRET.encode(), request.data, hashlib.sha256).hexdigest()
-    if not hmac.compare_digest(computed_sig, signature) and signature != "test":
+    if not hmac.compare_digest(computed_sig, signature):
         logger.warning("Invalid signature")
         return jsonify({'error': 'Invalid signature'}), 400
 
@@ -106,7 +106,10 @@ def payment_webhook():
         logger.warning("No donation found for payment ID: " + str(transaction_id))
         return jsonify({'error': 'No donation found'}), 404
 
-    event_mapping = {
+    # Doesnt need to handle all events, only the relevant ones
+    # Does not handle charge:created since the transaction status is already "created" when the transaction is created in the database
+
+    event_mapping = { 
         "charge:confirmed": "paid",
         "charge:pending": "pending_payment",
         "charge:failed": "failed"
@@ -120,7 +123,7 @@ def payment_webhook():
             users_collection.find_one_and_update({"discord_id": user_id}, {"$inc": {"balance": res["amount"]}})
             logger.success("Payment successful")
 
-            # EMAIL NOTIFICATIONS NOT IMPLEMENTED YET
+            # EMAIL NOTIFICATIONS NOT IMPLEMENTED YET MAYBE IN THE FUTURE
             #try:
             #    msg = Message("Donation Successful",sender=app.config["MAIL_USERNAME"] ,recipients=[res["email"]])
             #    msg.html = render_template("email.html",
