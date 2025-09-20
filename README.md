@@ -37,13 +37,13 @@ _A simple starter dashboard for building paid APIs with authentication, balance 
 
 ## ⚙️ Configuration
 
-See [CONFIG.md](CONFIG.md) for detailed setup instructions.
+See [Configuration Guide](CONFIG.md) for detailed setup instructions.
 
 ---
 
 ## 🛠 Local Development
 
-See [LOCAL_DEVELOPMENT.md](LOCAL_DEVELOPMENT.md) for development workflow.
+See [Local Development Guide](LOCAL_DEVELOPMENT.md) for development workflow.
 
 ---
 
